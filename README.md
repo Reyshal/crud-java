@@ -5,8 +5,8 @@ This web application is a basic CRUD application for university project
 
 -   clone this repository
 -   setting properties on the project
--   set your java platform and mysql connector on libraries
--   clean your project and build it
+-   set your java platform and mysql connector on libraries settings
+-   clean your project, build it and close it
 -   create the database `crud_java` and run/import query `crud_java.sql`
 -   adjust the project database settings in `src/java/Koneksi`
     ```
