@@ -12,10 +12,10 @@
     String message = "";
     String id = request.getParameter("id") ;
     
-    if(!id.equals("")){
-        if(book.delete(Integer.parseInt(id))){
+    if (!id.equals("")) {
+        if (book.delete(Integer.parseInt(id))) {
             message = "Data telah terhapus";
-        } else{
+        } else {
             message = "Error" ;
         }
     } else {
@@ -32,7 +32,8 @@
               charset=UTF-8">
         <title>GuestBook</title>
     </head>
-    <body><h2><%=message%>
+    <body>
+        <h2><%=message%>
             <br>
             <a href="index.jsp"> GUEST BOOK </a>
             <br>

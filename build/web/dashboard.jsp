@@ -19,8 +19,8 @@
     String submit_input = request.getParameter("submit");
 
     if (title_input != null && author_input != null && description_input != null && price_input != null && category_input != null && image_input != null) {
-        if((!title_input.equals("")) && (!author_input.equals("")) && (!description_input.equals("")) && (!price_input.equals("")) && (!category_input.equals("")) && (!image_input.equals(""))) {
-            if (submit_input.equals("add") ? book.simpan() : book.update(Integer.parseInt(id_input))){
+        if ((!title_input.equals("")) && (!author_input.equals("")) && (!description_input.equals("")) && (!price_input.equals("")) && (!category_input.equals("")) && (!image_input.equals(""))) {
+            if (submit_input.equals("add") ? book.simpan() : book.update(Integer.parseInt(id_input))) {
                 response.setIntHeader("Refresh", 0);
             } else {
                 response.setIntHeader("Refresh", 0);
@@ -77,7 +77,7 @@
                     <tbody>
                         <%
                             if (listBook != null) {
-                                for (int i = 0; i < listBook.length; i++){
+                                for (int i = 0; i < listBook.length; i++) {
                                     int no = i + 1;
                                 
                                     String id = listBook[i][0].toString();
@@ -97,7 +97,16 @@
                                         <td class="px-6 py-4"><%=price%></td>
                                         <td class="px-6 py-4"><%=category_id%></td>
                                         <td class="px-6 py-4"><img src="<%=image%>" alt="Book Image" class="bg-contain" width="200"></td>
-                                        <td class="px-6 py-4 flex gap-2"><button type="button" onclick="editButton(this)" data-id="<%=id%>" data-title="<%=title%>" data-author="<%=author%>" data-desc="<%=desc%>" data-price="<%=price%>" data-category="<%=category_id%>" data-image="<%=image%>" data-modal-toggle="book-edit-modal" class="font-bold text-blue-500">Edit</button> | <a href="delete.jsp?id=<%=id%>" class="font-bold text-red-500">Delete</a> </td>
+                                        <td class="px-6 py-4 flex gap-2">
+                                            <button type="button" onclick="editButton(this)" 
+                                            data-id="<%=id%>" data-title="<%=title%>" data-author="<%=author%>" data-desc="<%=desc%>" 
+                                            data-price="<%=price%>" data-category="<%=category_id%>" data-image="<%=image%>" 
+                                            data-modal-toggle="book-edit-modal" class="font-bold text-blue-500">
+                                                Edit
+                                            </button> 
+                                            | 
+                                            <a href="delete.jsp?id=<%=id%>" class="font-bold text-red-500">Delete</a> 
+                                        </td>
                                     </tr>
                         <%
                                 }

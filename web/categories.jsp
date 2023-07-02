@@ -15,8 +15,8 @@
     String submit_input = request.getParameter("submit");
 
     if (title_input != null && description_input != null) {
-        if((!title_input.equals("")) && (!description_input.equals(""))) {
-            if (submit_input.equals("add") ? category.simpan() : category.update(Integer.parseInt(id_input))){
+        if ((!title_input.equals("")) && (!description_input.equals(""))) {
+            if (submit_input.equals("add") ? category.simpan() : category.update(Integer.parseInt(id_input))) {
                 response.setIntHeader("Refresh", 0);
             } else {
                 response.setIntHeader("Refresh", 0);
@@ -34,7 +34,7 @@
         <div class="mx-auto max-w-5xl text-gray-400">
             <div class="flex justify-between items-center pb-4">
                 <h4 class="text-2xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white">Add Category</h4>
-                <button type="button" data-modal-target="guest-add-modal" data-modal-toggle="guest-add-modal" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Category</button>
+                <button type="button" data-modal-target="category-add-modal" data-modal-toggle="category-add-modal" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Category</button>
             </div>
 
             <div class="relative overflow-x-auto">
@@ -60,8 +60,8 @@
                     </thead>
                     <tbody>
                         <%
-                            if (listCategory != null){
-                                for (int i=0; i < listCategory.length; i++){
+                            if (listCategory != null) {
+                                for (int i = 0; i < listCategory.length; i++) {
                                     int no = i+1;
                                 
                                     String id = listCategory[i][0].toString();
@@ -73,7 +73,16 @@
                                         <td class="px-6 py-4"><%=id%></td>
                                         <td class="px-6 py-4"><%=title%></td>
                                         <td class="px-6 py-4"><%=desc%></td>
-                                        <td class="px-6 py-4 flex gap-2"><button type="button" onclick="editButton(this)" data-id="<%=id%>" data-title="<%=title%>" data-desc="<%=desc%>" data-modal-target="guest-edit-modal" data-modal-toggle="guest-edit-modal" class="font-bold text-blue-500">Edit</button> | <a href="delete_category.jsp?id=<%=id%>" class="font-bold text-red-500">Delete</a> </td>
+                                        <td class="px-6 py-4 flex gap-2">
+                                            <button type="button" onclick="editButton(this)" 
+                                                data-id="<%=id%>" data-title="<%=title%>" data-desc="<%=desc%>" 
+                                                data-modal-target="category-edit-modal" data-modal-toggle="category-edit-modal" 
+                                                class="font-bold text-blue-500">
+                                                Edit
+                                            </button> 
+                                            | 
+                                            <a href="delete_category.jsp?id=<%=id%>" class="font-bold text-red-500">Delete</a> 
+                                        </td>
                                     </tr>
                         <%
                                 }
@@ -97,15 +106,15 @@
         </div>
 
 
-        <!-- add guest modal -->
-        <div id="guest-add-modal" tabindex="-1" aria-hidden="true"
+        <!-- add category modal -->
+        <div id="category-add-modal" tabindex="-1" aria-hidden="true"
              class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-md max-h-full">
                 <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <button type="button"
                             class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-                            data-modal-hide="guest-add-modal">
+                            data-modal-hide="category-add-modal">
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                              xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -115,7 +124,7 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                     <div class="px-6 py-6 lg:px-8">
-                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Add New Guest</h3>
+                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Add New Category</h3>
                         <form class="space-y-6" action="categories.jsp" method="post">
                             <div>
                                 <label for="title"
@@ -137,15 +146,15 @@
             </div>
         </div>
 
-        <!-- edit guest modal -->
-        <div id="guest-edit-modal" tabindex="-1" aria-hidden="true"
+        <!-- edit category modal -->
+        <div id="category-edit-modal" tabindex="-1" aria-hidden="true"
              class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-md max-h-full">
                 <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <button type="button"
                             class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-                            data-modal-hide="guest-edit-modal">
+                            data-modal-hide="category-edit-modal">
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                              xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -155,7 +164,7 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                     <div class="px-6 py-6 lg:px-8">
-                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Edit Guest</h3>
+                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Edit Category</h3>
                         <form class="space-y-6" action="categories.jsp" method="post">
                             <input type="hidden" name="id" id="edit-id">
                             <div>
