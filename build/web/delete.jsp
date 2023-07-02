@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="guestBook" scope="page" class="crud.GuestBookBean" />
-<jsp:setProperty name="guestBook" property="*" />
+<jsp:useBean id="book" scope="page" class="crud.Book" />
+<jsp:setProperty name="book" property="*" />
 <%
     String user = (String) session.getAttribute("user");
     if (user == null) {
@@ -13,7 +13,7 @@
     String id = request.getParameter("id") ;
     
     if(!id.equals("")){
-        if(guestBook.delete(Integer.parseInt(id))){
+        if(book.delete(Integer.parseInt(id))){
             message = "Data telah terhapus";
         } else{
             message = "Error" ;
