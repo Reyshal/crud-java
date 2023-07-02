@@ -9,8 +9,8 @@
     String password = request.getParameter("password");
     
     if (username != null && password != null) {
-        if((!username.equals("")) && (!password.equals(""))) {
-            if (User.login(username, password)){
+        if ((!username.equals("")) && (!password.equals(""))) {
+            if (User.login(username, password)) {
                 session.setAttribute("user", username); 
                 String site = "/CrudJava/dashboard.jsp" ;
                 response.setStatus(response.SC_MOVED_TEMPORARILY);

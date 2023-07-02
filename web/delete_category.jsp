@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="book" scope="page" class="crud.Book" />
-<jsp:setProperty name="book" property="*" />
+<jsp:useBean id="category" scope="page" class="crud.Category" />
+<jsp:setProperty name="category" property="*" />
 <%
     String user = (String) session.getAttribute("user");
     if (user == null) {
@@ -13,7 +13,7 @@
     String id = request.getParameter("id") ;
     
     if (!id.equals("")) {
-        if (book.delete(Integer.parseInt(id))) {
+        if (category.delete(Integer.parseInt(id))) {
             message = "Data telah terhapus";
         } else {
             message = "Error" ;
@@ -22,7 +22,7 @@
         message="Data tidak ditemukan";
     }
 
-    String site = "/CrudJava/dashboard.jsp" ;
+    String site = "/CrudJava/categories.jsp" ;
     response.setStatus(response.SC_MOVED_TEMPORARILY);
     response.setHeader("Location", site);  
 %>

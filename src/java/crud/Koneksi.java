@@ -7,6 +7,7 @@ package crud;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -21,7 +22,23 @@ public class Koneksi {
     
     public static void main(String[] args) {
         Koneksi koneksi = new Koneksi();
-        koneksi.getConnection();
+        Connection connection;
+
+        if ((connection = koneksi.getConnection()) != null) {
+            try {
+                String query = "UPDATE books SET title = 'Test', author = 'Test', description = 'Test', price = 100000, category_id = 1, image = 'Test' WHERE product_id = 3";
+                Statement statement = connection.createStatement();
+                int jumlahSimpan = statement.executeUpdate(query);
+                
+                if (jumlahSimpan < 1) {
+                    System.out.println("Gagal menyimpan data books");
+                } else {
+                    System.out.println("Success!!");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Tidak dapat melakukan koneksi keserver\n" + koneksi.getError() + "\n" + ex);
+            }
+        }
     }
     
     public String getError() {

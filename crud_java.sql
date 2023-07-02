@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 28, 2023 at 07:05 PM
+-- Generation Time: Jul 02, 2023 at 01:50 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -24,16 +24,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `guest_book`
+-- Table structure for table `books`
 --
 
-CREATE TABLE `guest_book` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `company` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+CREATE TABLE `books` (
+  `product_id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `author` text NOT NULL,
+  `description` text NOT NULL,
+  `price` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `image` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `category_id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -61,10 +74,16 @@ INSERT INTO `user` (`id`, `username`, `password`, `created_at`) VALUES
 --
 
 --
--- Indexes for table `guest_book`
+-- Indexes for table `books`
 --
-ALTER TABLE `guest_book`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `books`
+  ADD PRIMARY KEY (`product_id`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`category_id`);
 
 --
 -- Indexes for table `user`
@@ -77,10 +96,16 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `guest_book`
+-- AUTO_INCREMENT for table `books`
 --
-ALTER TABLE `guest_book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `books`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
